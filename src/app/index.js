@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GroceryList from './GroceryList.jsx';
 
 class Hello extends React.Component {
   render() {
@@ -9,4 +10,4 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(<Hello />, document.getElementById('root'));
+ReactDOM.render(<GroceryList />, document.getElementById('root'));
