@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './controlled.jsx';
+import Form from './uncontrolled.jsx';
 import KanbanBoard from './board.jsx';
 
 let cardsList = [
@@ -36,4 +37,4 @@ let cardsList = [
   }
 ];
 
-ReactDOM.render(<Search />, document.getElementById('root'));
+ReactDOM.render(<Form />, document.getElementById('root'));
