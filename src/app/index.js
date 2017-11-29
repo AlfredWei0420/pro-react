@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GroceryList from './GroceryList.jsx';
+import Search from './controlled.jsx';
 import KanbanBoard from './board.jsx';
 
 let cardsList = [
@@ -36,4 +36,4 @@ let cardsList = [
   }
 ];
 
-ReactDOM.render(<KanbanBoard cards={cardsList} />, document.getElementById('root'));
+ReactDOM.render(<Search />, document.getElementById('root'));
