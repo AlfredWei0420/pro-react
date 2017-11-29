@@ -1,5 +1,3 @@
-const newLocal = 'always';
-
 /* eslint no-magic-numbers: "off" */
 /* eslint max-len: "off" */
 
