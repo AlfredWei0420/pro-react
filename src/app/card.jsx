@@ -10,7 +10,6 @@ class Card extends Component {
   }
   changeState() {
     this.setState({showDetails: !this.state.showDetails});
-    console.log(this.state.showDetails);
   }
   render() {
     let cardDetails;
@@ -25,7 +24,7 @@ class Card extends Component {
     console.log(cardDetails);
     return (
       <div className="card">
-      <div className="card_title" onClick={this.changeState.bind(this)}>{this.props.title}</div>
+      <div className="card__title" onClick={this.changeState.bind(this)}>{this.props.title}</div>
       {cardDetails}
     </div>
     )
