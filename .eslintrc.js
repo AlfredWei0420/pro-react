@@ -1,3 +1,5 @@
+const newLocal = 'always';
+
 /* eslint no-magic-numbers: "off" */
 /* eslint max-len: "off" */
 
@@ -7,7 +9,6 @@ module.exports = {
     'es6': true,
     'node': true,
   },
-  'parser': 'babel-eslint',
   'extends': [
     'eslint:recommended',
     'google',
@@ -83,7 +84,6 @@ module.exports = {
         'node': false,
       },
       'parserOptions': {
-        'ecmaVersion': 6,
         'sourceType': 'module',
         'ecmaFeatures': {
           'experimentalObjectRestSpread': true,

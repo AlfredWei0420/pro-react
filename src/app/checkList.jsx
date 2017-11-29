@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class CheckList extends Component {
-  render () {
+  render() {
     let tasks = this.props.tasks.map(function(task){
       return (
         <li className = "checklist_task">
@@ -9,7 +9,7 @@ class CheckList extends Component {
           {task.name}
           <a href="#" className="checklist__task--remove"></a>
         </li>
-      )
+      );
     });
     return (
       <div className="checklist">
