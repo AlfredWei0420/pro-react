@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CheckList from './checkList.jsx';
+import PropTypes from 'prop-types'; 
 
 class Card extends Component {
   constructor(props) {
@@ -72,5 +73,13 @@ class Card extends Component {
 //     );
 //   }
 // }
+Card.proTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  color: PropTypes.string,
+  tasks: PropTypes.array,
+  taskCallbacks: PropTypes.object,
+}
 
 export default Card;

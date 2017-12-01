@@ -14,6 +14,18 @@ class KanbanBoardContainer extends Component {
       cards: [],
     }
   }
+  addTask(cardId, taskName) {
+
+  }
+
+  deleteTask(cardId, taskId, taskIndex) {
+
+  }
+
+  toggleTask(cardId, taskId, taskIndex) {
+
+  }
+
   componentDidMount() {
     let that = this;
     fetch(API_URL+'/cards', {
@@ -29,7 +41,14 @@ class KanbanBoardContainer extends Component {
   }
 
   render() {
-    return <KanbanBoard cards={this.state.cards} />
+    return (
+      <KanbanBoard cards={this.state.cards}
+                          taskCallbacks={{
+                            toggle: this.toggleTask.bind(this),
+                            delete: this.deleteTask.bind(this),
+                            add: this.addTask.bind(this),
+                          }} />
+    ) 
   }
 }
 export default KanbanBoardContainer;
