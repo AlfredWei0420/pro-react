@@ -5,7 +5,6 @@ class CheckList extends Component {
   checkInputKeyPress(event){
     if(event.key === 'Enter'){
       this.props.taskCallbacks.add(this.props.cardId, event.target.value);
-      console.log(this);
       event.target.value = '';
     }
   }

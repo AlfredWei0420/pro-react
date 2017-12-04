@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import KanbanBoard from './board.jsx';
 import update from 'react-addons-update';
+import { error } from 'util';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
@@ -20,6 +21,7 @@ class KanbanBoardContainer extends Component {
       return card.id === cardId;
     })
     let that = this;
+    let prevState = this.state;
     let newTask = {id:Date.now(), name:taskName, done:false};
     let nextState = update(this.state.cards, {
       [cardIndex]: {
@@ -32,11 +34,18 @@ class KanbanBoardContainer extends Component {
       headers: API_HEADERS,
       body: JSON.stringify(newTask),
     }).then(function(response){
-      response.json().then(function(responseData){
-        newTask.id = responseData.id;
-        that.setState({cards: nextState});
-      })
-    });
+      if(response.ok){
+        response.json().then(function(responseData){
+          newTask.id = responseData.id;
+          that.setState({cards: nextState});
+        })
+      }else {
+        throw new Error("Server response wasn`t OK")
+      }      
+    }).catch(function(error){
+      console.log("Fetch error", error);
+      that.setState(prevState);
+    })
   }
 
   deleteTask(cardId, taskId, taskIndex) {
@@ -44,24 +53,20 @@ class KanbanBoardContainer extends Component {
       return card.id === cardId;
     })
     let that = this;
+    let prevState = this.state;
     let nextState = update(this.state.cards, {[cardIndex]: {tasks: {$splice: [[taskIndex,1]]}}});
+    this.setState(({cards:nextState}));
     fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'delete',
       headers: API_HEADERS,
     }).then(function(response){
-      console.log(response)
-      if(response.ok === true) {
-        fetch(API_URL+'/cards', {
-          method: 'GET',
-          headers: API_HEADERS,
-        }).then(function(response) {
-          response.json().then(function(responseData) {
-            that.setState({cards: responseData})
-          }).catch(function(error) {
-            console.log('Error fetching and parsing data', error)
-            })
-        })
+      console.log(response);
+      if(!response.ok){
+        throw new Error("Server response wasn`t OK")
       }
+    }).catch(function(error){
+      console.log("Fetch error", error);
+      that.setState(prevState);
     })
   }
 
@@ -70,6 +75,8 @@ class KanbanBoardContainer extends Component {
       card.id === cardId;
     })
     let newDoneValue;
+    let that = this;
+    let prevState = this.state;
     let nextState = update(this.state.cards, {
       [cardIndex]: {
         tasks: {
@@ -86,6 +93,13 @@ class KanbanBoardContainer extends Component {
       method: 'put',
       headers: API_HEADERS,
       body: JSON.stringify({done:newDoneValue})
+    }).then(function(response) {
+      if(!response.ok) {
+        throw new Error("Server response wasn`t OK")
+      }
+    }).catch(function(error){
+      console.log("Fetch error", error);
+      that.setState(prevState);
     });
   }
 
