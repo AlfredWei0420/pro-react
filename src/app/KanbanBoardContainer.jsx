@@ -60,7 +60,6 @@ class KanbanBoardContainer extends Component {
       method: 'delete',
       headers: API_HEADERS,
     }).then(function(response){
-      console.log(response);
       if(!response.ok){
         throw new Error("Server response wasn`t OK")
       }
