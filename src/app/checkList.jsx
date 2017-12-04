@@ -2,14 +2,21 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'; 
 
 class CheckList extends Component {
-  
+  checkInputKeyPress(event){
+    if(event.key === 'Enter'){
+      this.props.taskCallbacks.add(this.props.cardId, event.target.value);
+      console.log(this);
+      event.target.value = '';
+    }
+  }
+
   render() {
     let that = this;
     let tasks = this.props.tasks.map(function(task, taskIndex){
       return (
         <li key={task.id} className = "checklist_task">
           <input type="checkbox" defaultChecked={task.done} onChange={
-            this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)
+            that.props.taskCallbacks.toggle.bind(null, that.props.cardId, task.id, taskIndex)
           } />
           {task.name} {' '}
           <a href="#" className="checklist__task--remove" 
@@ -25,7 +32,8 @@ class CheckList extends Component {
         <ul>{tasks}</ul>
         <input type="text"
                className="checklist--add-task"
-               placeholder="Type then hit Enter to add a card" />
+               placeholder="Type then hit Enter to add a Task"
+               onKeyPress={this.checkInputKeyPress.bind(this)} />
       </div>
     );
   }

@@ -16,18 +16,52 @@ class KanbanBoardContainer extends Component {
     }
   }
   addTask(cardId, taskName) {
-
+    let cardIndex = this.state.cards.findIndex(function(card) {
+      return card.id === cardId;
+    })
+    let that = this;
+    let newTask = {id:Date.now(), name:taskName, done:false};
+    let nextState = update(this.state.cards, {
+      [cardIndex]: {
+        tasks: {$push: [newTask]}
+      }
+    });
+    this.setState({cards: nextState});
+    fetch(`${API_URL}/cards/${cardId}/tasks/`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify(newTask),
+    }).then(function(response){
+      response.json().then(function(responseData){
+        newTask.id = responseData.id;
+        that.setState({cards: nextState});
+      })
+    });
   }
 
   deleteTask(cardId, taskId, taskIndex) {
     let cardIndex = this.state.cards.findIndex(function(card) {
       return card.id === cardId;
     })
-    console.log(cardIndex);
+    let that = this;
     let nextState = update(this.state.cards, {[cardIndex]: {tasks: {$splice: [[taskIndex,1]]}}});
     fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'delete',
       headers: API_HEADERS,
+    }).then(function(response){
+      console.log(response)
+      if(response.ok === true) {
+        fetch(API_URL+'/cards', {
+          method: 'GET',
+          headers: API_HEADERS,
+        }).then(function(response) {
+          response.json().then(function(responseData) {
+            that.setState({cards: responseData})
+          }).catch(function(error) {
+            console.log('Error fetching and parsing data', error)
+            })
+        })
+      }
     })
   }
 
