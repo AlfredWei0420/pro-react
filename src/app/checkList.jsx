@@ -2,13 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'; 
 
 class CheckList extends Component {
+  
   render() {
     let that = this;
     let tasks = this.props.tasks.map(function(task, taskIndex){
       return (
         <li key={task.id} className = "checklist_task">
-          <input type="checkbox" defaultChecked={task.done} />
-          {task.name}
+          <input type="checkbox" defaultChecked={task.done} onChange={
+            this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)
+          } />
+          {task.name} {' '}
           <a href="#" className="checklist__task--remove" 
           onClick={
             that.props.taskCallbacks.delete.bind(null, that.props.cardId, task.id, taskIndex)
