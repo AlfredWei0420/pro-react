@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 
 class CheckList extends Component {
   render() {
-    let tasks = this.props.tasks.map(function(task){
+    let that = this;
+    let tasks = this.props.tasks.map(function(task, taskIndex){
       return (
         <li key={task.id} className = "checklist_task">
           <input type="checkbox" defaultChecked={task.done} />
           {task.name}
-          <a href="#" className="checklist__task--remove"></a>
+          <a href="#" className="checklist__task--remove" 
+          onClick={
+            that.props.taskCallbacks.delete.bind(null, that.props.cardId, task.id, taskIndex)
+          }
+          ></a>
         </li>
       );
     });

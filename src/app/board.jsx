@@ -29,10 +29,10 @@ class KanbanBoard extends Component {
   }
 }
 
-// KanbanBoard.proTypes = {
-//   cards: PropTypes.arrayOf(PropTypes.object),
-//   taskCallbacks: PropTypes.object,
-// }
+KanbanBoard.proTypes = {
+  cards: PropTypes.arrayOf(PropTypes.object),
+  taskCallbacks: PropTypes.object,
+}
 
 // original code with ES6
 // class KanbanBoard extends Component {

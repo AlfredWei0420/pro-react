@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import KanbanBoard from './board.jsx';
+import update from 'react-addons-update';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
@@ -19,7 +20,15 @@ class KanbanBoardContainer extends Component {
   }
 
   deleteTask(cardId, taskId, taskIndex) {
-
+    let cardIndex = this.state.cards.findIndex(function(card) {
+      return card.id === cardId;
+    })
+    console.log(cardIndex);
+    let nextState = update(this.state.cards, {[cardIndex]: {tasks: {$splice: [[taskIndex,1]]}}});
+    fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+      method: 'delete',
+      headers: API_HEADERS,
+    })
   }
 
   toggleTask(cardId, taskId, taskIndex) {
