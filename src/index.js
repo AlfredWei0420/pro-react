@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './controlled.jsx';
-import Form from './uncontrolled.jsx';
-import KanbanBoardContainer from './KanbanBoardContainer.jsx';
-import ContactsApp from './contact.jsx';
+import AnimatedShoppingList from './app/AnimatedShoppingList.jsx';
+import KanbanBoardContainer from './app/KanbanBoardContainer.jsx';
+import ContactsApp from './app/contact.jsx';
 
 // let cardsList = [
 //   {
@@ -49,5 +48,5 @@ let contacts = [
   {name: "Sebasian Markbage", email: "semarkbage@gamil.com"},
 ];
 
-ReactDOM.render(<KanbanBoardContainer />, document.getElementById('root'));
+ReactDOM.render(<AnimatedShoppingList />, document.getElementById('root'));
 // ReactDOM.render(<ContactsApp contacts={contacts} />, document.getElementById('root'));
