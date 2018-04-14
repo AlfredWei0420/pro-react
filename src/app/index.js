@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GroceryList from './GroceryList.jsx';
+import { Message } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 class Hello extends React.Component {
   render() {
     return (
-      <h1>Hello React</h1>
+      <div>
+        <h1>Hello React</h1>
+        <GroceryList />
+        <Message info>
+         <Message.Header>Was this what you wanted?</Message.Header>
+         <p>Did you know it's been a while?</p>
+        </Message>
+      </div>
+      
     );
   }
 }
 
-ReactDOM.render(<GroceryList />, document.getElementById('root'));
+ReactDOM.render(<Hello />, document.getElementById('root'));
