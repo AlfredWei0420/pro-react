@@ -14,7 +14,7 @@ class Hello extends React.Component {
         <GroceryList />
         <Message info >
          <Message.Header>Was this what you wanted?</Message.Header>
-         <p>Did you know it's been a while?</p>
+         <p>Did you know isssssssssssssssssst's been a while?</p>
         </Message>
         <Warning type='warning' header="aaa" info="bbb" />
       </div>
