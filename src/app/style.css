@@ -1,3 +1,12 @@
-.ui.info.message {
+.message {
     width: 360px;
+}
+.fade-out {
+    opacity: 0.5;
+}
+
+.cross-icon{
+    position: relative;
+    left: 340px;
+    bottom: 80px;
 }
