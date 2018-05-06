@@ -18,7 +18,7 @@ class Warning extends Component {
       that.setState({type:recieve.type})
       let height=document.getElementsByClassName("info");
       that.setState({height:height});
-      console.log(height[0].scrollHeight)
+      // console.log(height[0].scrollHeight)
       if(height[0].scrollHeight > 70){
         height[0].style.padding = '19px';
       }
