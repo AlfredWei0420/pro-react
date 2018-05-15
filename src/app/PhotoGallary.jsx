@@ -38,6 +38,7 @@ class PhotoGallray extends Component {
 
   onImgClick(index) {
     this.setState({imgIndex:index});
+    console.log(index);
   }
 
   render() {
@@ -54,8 +55,8 @@ class PhotoGallray extends Component {
           </div>
           <div className='thumbnails'>
             {photos.map(
-              (e,i)=> <img key={i}
-                          src={e.thumbnailPath} onClick={(e)=>{this.onImgClick(i)}}/>
+              (element)=> <img key={element.id}
+                           src={element.thumbnailPath} onClick={(e)=>{this.onImgClick(element.id-1)}}/>
             )}
           </div>
         </div>
