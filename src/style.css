@@ -1,0 +1,70 @@
+.message {
+  width: 360px;
+}
+.fade-out {
+  opacity: 0.5;
+}
+
+.cross-icon {
+  position: relative;
+  left: 340px;
+  bottom: 80px;
+}
+
+/*gallary css*/
+.photo-gallary{
+  width: 760px;
+}
+.main-frame {
+  display: flex;
+}
+button {
+  width: 60px;
+  height: 320px;
+}
+.right-button {
+  background: url('../src/assets/right_arrow.svg') center no-repeat ;
+}
+.left-button {
+  background: url('../src/assets/right_arrow.svg') center no-repeat ;
+  transform:rotate(180deg); 
+  -moz-transform:rotate(180deg);   
+  -webkit-transform:rotate(180deg); 
+}
+
+.thumbnails {
+  width: 500px;
+  margin: 20px auto;
+}
+
+.spinner >img {
+  position: absolute;   
+  top: 50%;   
+  left: 50%;   
+  -webkit-transform: translate(-50%, -50%);   
+  -moz-transform: translate(-50%, -50%);   
+  -ms-transform: translate(-50%, -50%);   
+  -o-transform: translate(-50%, -50%);   
+  transform: translate(-50%, -50%); 
+  z-index: 1000;
+  
+  -webkit-animation:loadRotate 1.5s linear infinite;
+  -webkit-animation-fill-mode:both;
+}
+
+@-webkit-keyframes loadRotate{
+  from{
+    -webkit-transform:rotateZ(0deg);
+  }
+  to{
+    -webkit-transform:rotateZ(360deg);
+  }
+}
+@keyframes loadRotate{
+  from{
+    transform:rotateZ(0deg);
+  }
+  to{
+    transform:rotateZ(360deg);
+  }
+}

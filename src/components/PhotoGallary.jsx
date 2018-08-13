@@ -6,7 +6,7 @@ class PhotoGallray extends Component {
     super(props)
     this.state = { 
       photoLength: 0,
-      imgIndex: 0
+      imgIndex: 0,
     }
     this.onRightClick=this.onRightClick.bind(this);
     this.onLeftClick=this.onLeftClick.bind(this);
@@ -15,6 +15,7 @@ class PhotoGallray extends Component {
 
   componentDidMount() {
     const { photos } = this.props;
+    console.log("photos:",photos);
     this.setState({photoLength: photos.length});
   }
 
@@ -38,13 +39,14 @@ class PhotoGallray extends Component {
 
   onImgClick(index) {
     this.setState({imgIndex:index});
-    console.log(index);
   }
 
   render() {
     const { photos } = this.props;
-    const { imgIndex } = this.state;
+    const { imgIndex, photoLength } = this.state;
     const hasPhoto = photos.length !== 0;
+    
+    // console.log(photos[0], photos.length, photoLength)
     return (
       hasPhoto && (
         <div className='photo-gallary'>
